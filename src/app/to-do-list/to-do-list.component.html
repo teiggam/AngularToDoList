@@ -1,0 +1,28 @@
+<html>
+    <header>
+        <h1>AGENDA</h1>
+    </header>
+
+    <body>
+        <div class= newDiv>
+            <h2>Tasks to Complete:</h2>
+            <div *ngFor="let list of toDoList; index as i">
+                <p *ngIf="list.completed" style="text-decoration:line-through;">{{i+1}}. {{list.task}} <button class="b2"(click)="removeTask(i)">x</button></p>
+                <p *ngIf="!list.completed"> {{i+1}}. {{list.task}} <button class="b1" (click)="completeTask(i)">Complete</button>
+                    <button class="b2"(click)="removeTask(i)">x</button></p>
+                
+                </div>
+                <div>
+
+                    <form class="f" #addTaskForm="ngForm" (ngSubmit)="addTask(addTaskForm)">
+                        <p><input type="text" name="task" id="task" placeholder="Add new agenda item" ngModel/></p>
+                        <button class="b3">Add Item</button>
+                    </form>
+                </div>
+                
+                <h1 *ngIf="!checkTrueExist(toDoList)" style="text-align: center;">You have finished all tasks!</h1>
+
+
+            </div>
+    </body>
+</html>
