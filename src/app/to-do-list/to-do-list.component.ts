@@ -12,6 +12,7 @@ export class ToDoListComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {
   }
+  searchText='';
   toDoList: toDo [] = [
     {task:"Make Bed", completed: false},
     {task:"Eat breakfast", completed: true},
@@ -22,7 +23,8 @@ export class ToDoListComponent implements OnInit {
     {task:"Do laundry", completed: true},
     {task:"Sleep", completed: false}
 
-];
+    
+  ];
 
 addTask(form: NgForm){
   let newTask:toDo = {task: form.form.value.task, completed: false};

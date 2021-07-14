@@ -4,25 +4,41 @@
     </header>
 
     <body>
-        <div class= newDiv>
-            <h2>Tasks to Complete:</h2>
-            <div *ngFor="let list of toDoList; index as i">
-                <p *ngIf="list.completed" style="text-decoration:line-through;">{{i+1}}. {{list.task}} <button class="b2"(click)="removeTask(i)">x</button></p>
-                <p *ngIf="!list.completed"> {{i+1}}. {{list.task}} <button class="b1" (click)="completeTask(i)">Complete</button>
-                    <button class="b2"(click)="removeTask(i)">x</button></p>
-                
-                </div>
-                <div>
-
-                    <form class="f" #addTaskForm="ngForm" (ngSubmit)="addTask(addTaskForm)">
-                        <p><input type="text" name="task" id="task" placeholder="Add new agenda item" ngModel/></p>
-                        <button class="b3">Add Item</button>
-                    </form>
-                </div>
-                
-                <h1 *ngIf="!checkTrueExist(toDoList)" style="text-align: center;">You have finished all tasks!</h1>
-
-
+        <div class="content" role="main">
+            <div class="card">
+              <div class="form-group">
+                <label for="search-text">Search for Task</label><br>
+                <input type="text" class="form-control" id="search-text" aria-describedby="search-text" 
+                  [(ngModel)]="searchText" placeholder="Enter text to search" 
+                  autofocus>
+              </div>
+              
+              <h2>Tasks to Complete:</h2>
+              <ul class="list-group list-group-flush">
+                <!-- results of ngFor is passed to appFilter with argument searchText -->
+                <li class="list-group-item"  *ngFor="let list of toDoList | appFilter: searchText; index as i">
+                    <p *ngIf="list.completed" style="text-decoration:line-through;">{{i+1}}. {{list.task}}<button class="b2"(click)="removeTask(i)">x</button></p>
+                    <p *ngIf="!list.completed"> {{i+1}}. {{list.task}} <button class="b1" (click)="completeTask(i)">Complete</button>
+                        <button class="b2"(click)="removeTask(i)">x</button></p>
+                </li>
+               
+              </ul>
             </div>
+        </div>
+        
+        <div class="content" role="main">
+            <div class="card">
+                <form class="f" #addTaskForm="ngForm" (ngSubmit)="addTask(addTaskForm)">
+                    <p><input required type="text" name="task" id="task" placeholder="Add new agenda item" ngModel /></p>
+                    <input type="submit" class="b3" value="Add Item"/>
+                </form>
+            </div>
+        </div>
+        <h1 *ngIf="!checkTrueExist(toDoList)" style="text-align: center;">You have finished all tasks!</h1>
+        
+                
+
+
+           
     </body>
 </html>
