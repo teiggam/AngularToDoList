@@ -13,6 +13,14 @@
                   autofocus>
               </div>
               
+              <div class="content" role="main">
+                  <div class="card">
+                      <form #addTaskForm="ngForm" (ngSubmit)="addTask(addTaskForm)">
+                          <p><input class="f" required type="text" name="task" id="task" placeholder="Add new agenda item" ngModel /></p>
+                          <input type="submit" class="b3" value="Add Item"/>
+                      </form>
+                  </div>
+              </div>
               <h2>Tasks to Complete:</h2>
               <ul class="list-group list-group-flush">
                 <!-- results of ngFor is passed to appFilter with argument searchText -->
@@ -26,14 +34,6 @@
             </div>
         </div>
         
-        <div class="content" role="main">
-            <div class="card">
-                <form class="f" #addTaskForm="ngForm" (ngSubmit)="addTask(addTaskForm)">
-                    <p><input required type="text" name="task" id="task" placeholder="Add new agenda item" ngModel /></p>
-                    <input type="submit" class="b3" value="Add Item"/>
-                </form>
-            </div>
-        </div>
         <h1 *ngIf="!checkTrueExist(toDoList)" style="text-align: center;">You have finished all tasks!</h1>
         
                 
